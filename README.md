@@ -32,7 +32,7 @@ php artisan vendor:publish --tag=route-tracer-config
 ### Method 1: Middleware (Recommended)
 Wrap your routes with the trace middleware:
 ```php
-use tonygeez\LaravelRouteTracer\Middleware\TraceRouteDependencies;
+use TonyGeez\LaravelRouteTracer\Middleware\TraceRouteDependencies;
 
 // Enable for next request
 TraceRouteDependencies::enable();
@@ -66,7 +66,7 @@ php artisan route:trace-view --route=api.users
 
 ### Method 3: Facade
 ```php
-use tonygeez\LaravelRouteTracer\Facades\RouteTracer;
+use TonyGeez\LaravelRouteTracer\Facades\RouteTracer;
 
 // Enable tracing
 RouteTracer::enable();
