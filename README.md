@@ -1,15 +1,14 @@
 # Laravel Route Tracer
 
-**Runtime execution tracer for Laravel routes** - Captures actual file dependencies, memory usage, and execution flow for any Laravel route.
+**Runtime execution tracer for Laravel routes** - Captures actual file dependencies and execution flow for any Laravel route.
 
 ## Why This Package?
 
-Stop guessing what your routes actually do. This package records the **real** execution path by capturing which files PHP actually loads during a request.
+To records the **real** execution path by capturing which files PHP actually loads during a request.
 
 ### What You Get
 
--  **Actual file dependencies** - Not guessing, actual PHP includes
--  **Memory usage** - See how much memory each route uses
+-  **Actual file dependencies** - Not guessing
 -  **Execution time** - Real performance metrics
 -  **Categorized files** - Controllers, Models, Policies, etc.
 -  **Exception tracking** - Traces even when things break
@@ -19,12 +18,20 @@ Stop guessing what your routes actually do. This package records the **real** ex
 
 ```bash
 composer require tonygeez/laravel-route-tracer --dev
+```
+
 The package will auto-register via Laravel's package discovery.
+
 Publish Config (Optional)
+```bash
 php artisan vendor:publish --tag=route-tracer-config
-Usage
-Method 1: Middleware (Recommended)
+```
+
+## Usage
+
+### Method 1: Middleware (Recommended)
 Wrap your routes with the trace middleware:
+```php
 use tonygeez\LaravelRouteTracer\Middleware\TraceRouteDependencies;
 
 // Enable for next request
@@ -34,7 +41,10 @@ Route::middleware(['trace-route'])->group(function () {
     Route::get('/api/users', [UserController::class, 'index']);
     Route::post('/api/users', [UserController::class, 'store']);
 });
-Method 2: Artisan Commands
+```
+
+### Method 2: Artisan Commands
+```bash
 # Enable tracing for next request
 php artisan route:trace-enable
 
@@ -52,7 +62,10 @@ php artisan route:trace-view --latest
 
 # Filter by route name
 php artisan route:trace-view --route=api.users
-Method 3: Facade
+```
+
+### Method 3: Facade
+```php
 use tonygeez\LaravelRouteTracer\Facades\RouteTracer;
 
 // Enable tracing
@@ -68,10 +81,17 @@ if (RouteTracer::isEnabled()) {
 
 // Disable
 RouteTracer::disable();
-Method 4: Config (Global)
+```
+
+### Method 4: Config (Global)
+
 Set in .env:
+```bash
 ROUTE_TRACER_ENABLED=true
-Example Output
+```
+
+**Example Output**
+```
 {
     "route": "api.users.index",
     "uri": "/api/v1/users",
@@ -99,8 +119,12 @@ Example Output
     "execution_time_ms": 45.2,
     "timestamp": "2024-01-15T10:30:45+00:00"
 }
-Configuration
-All options can be configured via config/route-tracer.php:
+```
+
+## Configuration
+
+All options can be configured via `config/route-tracer.php`
+```php
 return [
     // Enable globally
     'enabled' => env('ROUTE_TRACER_ENABLED', false),
@@ -118,3 +142,4 @@ return [
         '/storage/',
     ],
 ];
+```
