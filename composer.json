@@ -1,0 +1,46 @@
+{
+  "name": "tonygeez/laravel-route-tracer",
+  "description": "Runtime execution tracer for Laravel routes - captures actual file dependencies and execution flow",
+  "license": "MIT",
+  "keywords": ["laravel",
+    "tracing",
+    "debugging",
+    "profiling",
+    "route",
+    "dependencies"],
+  "authors": [{
+    "name": "TonyGeez",
+    "email": "hixostorage@gmail.com"
+  }],
+  "require": {
+    "php": "^8.1",
+    "illuminate/support": "^10.0|^11.0",
+    "illuminate/http": "^10.0|^11.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.0",
+    "orchestra/testbench": "^8.0|^9.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "TonyGeez\\LaravelRouteTracer\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "TonyGeez\\LaravelRouteTracer\\Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "TonyGeez\\LaravelRouteTracer\\TraceRouteDependenciesServiceProvider"
+      ],
+      "aliases": {
+        "RouteTracer": "TonyGeez\\LaravelRouteTracer\\Facades\\RouteTracer"
+      }
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}

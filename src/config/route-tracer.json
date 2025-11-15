@@ -1,0 +1,49 @@
+<?php
+
+return [
+    /*
+    |--------------------------------------------------------------------------
+    | Enable Tracing
+    |--------------------------------------------------------------------------
+    |
+    | Enable route tracing globally. When false, tracing must be enabled
+    | programmatically using RouteTracer::enable() or the artisan command.
+    |
+    */
+    'enabled' => env('ROUTE_TRACER_ENABLED', false),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Output Format
+    |--------------------------------------------------------------------------
+    |
+    | Choose the format for trace output: 'json' or 'markdown'
+    |
+    */
+    'output_format' => env('ROUTE_TRACER_FORMAT', 'json'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Log Channel
+    |--------------------------------------------------------------------------
+    |
+    | The log channel to use for trace summaries
+    |
+    */
+    'log_channel' => env('ROUTE_TRACER_LOG_CHANNEL', 'stack'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Exclude Patterns
+    |--------------------------------------------------------------------------
+    |
+    | File paths containing these patterns will be excluded from traces
+    |
+    */
+    'exclude_patterns' => [
+        '/vendor/',
+        '/bootstrap/',
+        '/storage/',
+        '/config/',
+    ],
+];
